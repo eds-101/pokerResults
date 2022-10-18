@@ -1,0 +1,5 @@
+{
+  "name": "pokerTable",
+  "region": "eu-west-2",
+  "main": "stacks/index.js"
+}
