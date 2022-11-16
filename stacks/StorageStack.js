@@ -6,24 +6,33 @@ export function StorageStack({ stack, app }) {
   const bucket = new Bucket(stack, "Uploads");
 
   // Create the DynamoDB table
-  const table = new Table(stack, "Results", {
+  const table = new Table(stack, "PokerGameResults", {
     fields: {
-      id: "number",
-      locationId: "number",
-      finishingPositions: [{
-        winnerId: "number",
-        secondPlaceId: "number",
-        thirdPlaceId: "number",
-      }],
-      playerEntries: [{
-        playerId: "number", rebuys: "number"
-      }],
-      buyIn: "float",
+      gameId: "number",
+      locationId: "string",
+      // finishingPositions: {
+      //   winnerId: "number",
+      //   secondPlaceId: "number",
+      //   thirdPlaceId: "number",
+      // },
+      // playerEntries: [{
+      //   playerId: "number", rebuys: "number"
+      // }],
+      // buyIn: "float",
     },
-    primaryIndex: { partitionKey: "id", sortKey: "locationId" },
+    primaryIndex: { partitionKey: "gameId", sortKey: "locationId" },
+  });
+
+  // Create the DynamoDB table
+  const playersTable = new Table(stack, "Players", {
+    fields: {
+      playerId: "number",
+      name: "string",
+    },
+    primaryIndex: { partitionKey: "playerId" },
   });
 
   return {
-    table, bucket
+    table, playersTable, bucket
   };
 }
