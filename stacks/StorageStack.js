@@ -10,15 +10,6 @@ export function StorageStack({ stack, app }) {
     fields: {
       gameId: "number",
       locationId: "string",
-      // finishingPositions: {
-      //   winnerId: "number",
-      //   secondPlaceId: "number",
-      //   thirdPlaceId: "number",
-      // },
-      // playerEntries: [{
-      //   playerId: "number", rebuys: "number"
-      // }],
-      // buyIn: "float",
     },
     primaryIndex: { partitionKey: "gameId", sortKey: "locationId" },
   });
