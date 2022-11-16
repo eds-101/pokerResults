@@ -11,7 +11,7 @@ export async function main(event) {
     TableName: process.env.TABLE_NAME,
     Item: {
       // The attributes of the item to be created
-      id: 123,
+      gameId: 123,
       locationId: uuid.v1(), // A unique uuid
       finishingPositions: data.finishingPositions, // Parsed from request body
       playerEntries: data.playerEntries, // Parsed from request body
@@ -20,8 +20,6 @@ export async function main(event) {
     },
   };
   // {"finishingPositions": {"winnerId": 100, "secondPlaceId": 101, "thirdPlaceId": 102}, "playerEntries": [{"playerId": 100, "rebuys": 0}, {"playerId": 101, "rebuys": 1}, {"playerId": 102, "rebuys": 0}], "buyIn": 20}
-  // {"finishingPositions": {"winnerId": 100, "secondPlaceId": 101, "thirdPlaceId": 102}, "buyIn": 20}
-  // {  "buyIn": 20}
 
   try {
     await dynamoDb.put(params).promise();
