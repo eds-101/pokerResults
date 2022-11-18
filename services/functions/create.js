@@ -10,7 +10,7 @@ export const main = handler(async (event) => {
     TableName: process.env.TABLE_NAME,
     Item: {
       // The attributes of the item to be created
-      gameId: 123,
+      gameId: Math.floor(Math.random() * 10000),
       locationId: uuid.v1(), // A unique uuid
       finishingPositions: data.finishingPositions, // Parsed from request body
       playerEntries: data.playerEntries, // Parsed from request body
